@@ -1,6 +1,8 @@
 package com.bridgelabz;
+
 import java.util.ArrayList;
-public class HashTableExp <T extends Comparable<T>> {
+
+public class HashTableExp<T extends Comparable<T>> {
 
     private final int m;
 
@@ -9,7 +11,7 @@ public class HashTableExp <T extends Comparable<T>> {
     HashTableExp() {
         this.m = 10;
         this.myHashTableList = new ArrayList<LinkedList<T>>(m);
-        for(int i=0;i<m;i++){
+        for (int i = 0; i < m; i++) {
             this.myHashTableList.add(null);
         }
     }
@@ -21,14 +23,14 @@ public class HashTableExp <T extends Comparable<T>> {
     }
 
     //Method to Store Node in Linked List
-    public void storeKey(int index,T mystr) {
+    public void storeKey(int index, T mystr) {
         LinkedList ll = myHashTableList.get(index);
-        if(ll == null) {
+        if (ll == null) {
             ll = new LinkedList();
             ll.insertNode(mystr);
-            myHashTableList.set(index,ll);
+            myHashTableList.set(index, ll);
         } else {
-            if(!ll.findNode(mystr)){
+            if (!ll.findNode(mystr)) {
                 ll.insertNode(mystr);
             }
         }
@@ -36,13 +38,24 @@ public class HashTableExp <T extends Comparable<T>> {
 
     //Method to Show Linked List Data
     public void showHashList() {
-        for(int i=0;i<m;i++) {
+        for (int i = 0; i < m; i++) {
             LinkedList ll = myHashTableList.get(i);
-            if(ll != null) {
-                System.out.print("\n "+ i +" => ");
+            if (ll != null) {
+                System.out.print("\n " + i + " => ");
                 ll.showLinkedList();
             }
         }
+    }
+
+    //Methode to Remove Key
+    public void removeKey(int index, T word) {
+        if (myHashTableList.contains(index)) {
+            LinkedList linkedList = myHashTableList.get(index);
+            linkedList.removeNode(word);
+        } else {
+            System.out.println("No Key Match with Given Word.");
+        }
+
     }
 
 }
